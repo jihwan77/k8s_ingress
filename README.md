@@ -26,7 +26,7 @@
 </p>
 <br>
 
----
+
 
 ## 시스템 아키텍처
 <br>
@@ -235,7 +235,7 @@ kubectl get ingress
 - Ingress의 service.name 값을 Service의 metadata.name과 동일하게 수정
 - Ingress service.port 를 Service 정의와 동일하게 맞춤
 
----
+##
 
 ### 1. 현상
 
