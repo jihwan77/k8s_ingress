@@ -7,7 +7,7 @@
 
 ---
 
-## 0) 워크플로우 시각화
+## 워크플로우 시각화
 
 > 소스 → 컨테이너 이미지 빌드 → Docker Hub 푸시 → Kubernetes 배포(Deployment/Service) → Ingress 노출 → gmg.local로 외부 접속까지의 End-to-End 흐름.
 
