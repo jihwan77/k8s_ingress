@@ -1,17 +1,15 @@
 # 애플리케이션의 컨테이너화와 Kubernetes 배포
 
 ## 🎯 프로젝트 목적
-
-- 애플리케이션을 **Docker 이미지**로 빌드하고 Docker Hub에 Push  
-- Kubernetes에 **배포 설정(Deployment / Service / Ingress)** 을 적용해 클러스터에 배포  
-- **Ingress와 도메인 매핑을 통해 외부 브라우저에서 접속 가능**한 환경 구축  
+- 자체 구현한 Docker 이미지 기반 웹서버를 Kubernetes에 배포
+- Ingress를 통해 도메인 기반 서비스 구분 및 접근 제공
 
 ---
 
 ## 🌠 진행 과정
 
 1. **Spring Boot 프로젝트에 `index.html` 추가**
-2. Dockerfile을 생성하고 **이미지 빌드 → Docker Hub Push**  
+2. Dockerfile을 바탕으로 **이미지 빌드 후 Docker Hub Push**  
 3. Kubernetes에 **배포용 설정 파일 적용**  
 4. **NGINX Ingress Controller 설치**  
 5. Ingress 설정을 적용해 도메인 연결  
@@ -20,10 +18,7 @@
 
 ---
 
-## 워크플로우 시각화
-
-> 소스 → 컨테이너 이미지 빌드 → Docker Hub 푸시 → Kubernetes 배포(Deployment/Service) → Ingress 노출 → gmg.local로 외부 접속까지의 End-to-End 흐름.
-
+## 🚀 워크플로우 시각화
 <br>
 
 <p align="center">
@@ -50,13 +45,13 @@
 </html>
 ```
 
-이후 Dockerfile을 통해 이 HTML 파일을 컨테이너 이미지에 포함시켜 배포합니다.
+이후 Dockerfile을 통해 Maven으로 빌드된 웹서버 Jar 파일을 컨테이너 이미지에 포함하여 배포
 
 ---
 
-## 2) Dockerfile 작성 → 이미지 빌드
+## 2) Dockerfile 작성 및 이미지 빌드
 
-**프로젝트 루트에 `Dockerfile` 생성**
+**`Dockerfile` 생성**
 
 ```dockerfile
 # Base Image 설정
@@ -100,7 +95,7 @@ docker push ${YOUR_DOCKERHUB_ID}/${APP_NAME}:${APP_VERSION}
 
 ---
 
-## 4) Kubernetes 매니페스트 작성 (Deployment, Service)
+## 4) Kubernetes YAML 파일 작성 (Deployment, Service)
 
 ### 4-1) `gmg-ingressdeploysvc.yaml`
 
@@ -126,27 +121,11 @@ spec:
         - containerPort: 80
 ```
 
-### 4-2) `gmg-clusterip.yaml`
-
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: gmg-service
-spec:
-  type: ClusterIP
-  selector:
-    app: spring
-  ports:
-    - port: 80
-      targetPort: 80
-```
 
 **리소스 적용**
 
 ```bash
 kubectl apply -f gmg-ingressdeploysvc.yaml
-kubectl apply -f gmg-clusterip.yaml
 ```
 
 <p align="center">
@@ -214,7 +193,7 @@ kubectl get ingress
 
 ## 7) 외부 접속 확인
 
-- Windows `hosts` 파일에 Ingress Controller IP와 `gmg.local` 매핑  
+- Windows `hosts` 파일에 minikube IP와 `gmg.local` 매핑  
   ```
   <INGRESS_IP> gmg.local
   ```
@@ -222,8 +201,8 @@ kubectl get ingress
 <img width="700" height="200" alt="image" src="https://github.com/user-attachments/assets/e82f980b-570e-4105-9ac3-7bdfa24d36c5" />
 </p>
 
-- 브라우저에서 `http://gmg.local` 접속  
-- index.html의 내용(“접속 성공”)이 보이면 성공 ✅
+- curl http://gmg.local 접속
+- index.html의 내용(“드디어 고망고”)이 보이면 성공 ✅
 
 <p align="center">
 <img width="700" height="300" alt="image" src="https://github.com/user-attachments/assets/5baf35eb-16b8-40a7-92b2-bf71262a939a" />
