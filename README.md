@@ -20,6 +20,44 @@
 
 ---
 
+   ## 👥 팀 구성원
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/moonstone0514">
+        <img src="https://github.com/moonstone0514.png" width="100px;" alt="moonstone0514"/><br />
+        <sub><b>김문석</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Minkyoungg0">
+        <img src="https://github.com/Minkyoungg0.png" width="100px;" alt="Minkyoungg0"/><br />
+        <sub><b>문민경</b></sub>
+      </a>
+    </td>
+    <td align="center">
+       <a href="https://github.com/yeomyeoung">
+        <img src="https://github.com/yeomyeoung.png" width="100px;" alt="hyunn522"/><br />
+        <sub><b>박여명</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/dlacowns21">
+        <img src="https://github.com/dlacowns21.png" width="100px;" alt="dlacowns21"/><br />
+        <sub><b>임채준</b></sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/jihwan77">
+        <img src="https://github.com/jihwan77.png" width="100px;" alt="jihwan77"/><br />
+        <sub><b>황지환</b></sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
+---
+
 ## 워크플로우 시각화
 
 > 소스 → 컨테이너 이미지 빌드 → Docker Hub 푸시 → Kubernetes 배포(Deployment/Service) → Ingress 노출 → gmg.local로 외부 접속까지의 End-to-End 흐름.
