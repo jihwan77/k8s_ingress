@@ -263,13 +263,32 @@ spec:
 ### 1. **현상**
 - Ingress 리소스를 배포했으나, 외부 요청이 정상적으로 Service로 전달되지 않음.
 - 브라우저 접속 및 curl 요청 시 404 Not Found 또는 연결 불가 현상 발생.
-  
+
 ### 2. **원인**
 - Ingress 리소스에서 **backend service의 name**과 실제 Service 리소스의 **metadata.name**이 일치하지 않았음
 - Ingress 리소스에서 지정한 **servicePort name/number**와 Service 리소스에서 정의한 **port name/number**가 불일치했음
-    
+
     요약: Ingress Controller는 host/path → Service 매핑 시 name과 port 매칭을 엄격하게 검사하므로, 오탈자나 불일치가 있으면 트래픽을 라우팅하지 못함
-    
+
 ### 3. **해결 방법**
 - Ingress의 service.name 값을 Service의 metadata.name과 동일하게 수정
 - Ingress service.port 를 Service 정의와 동일하게 맞춤
+
+---
+
+### 1. 현상
+
+- Ingress 리소스를 배포했으나, curl http://<노드IP>:<포트> 형식으로 접근 시 응답이 오지 않음.
+- http://<서비스-ClusterIP>:<포트> 접근 또한 외부에서는 불가능.
+- 반대로 curl http://<Ingress에 정의한 Host>/... 형식으로 도메인 기반 요청 시에는 정상 응답.
+
+### 2. 원인
+
+- Service 타입을 ClusterIP로 설정했기 때문에 클러스터 내부에서만 접근 가능함.
+- Ingress는 L7 라우터 역할을 하며, 외부 → 내부 트래픽은 Ingress Controller의 LoadBalancer/NodePort 포트로 들어와야만 서비스까지 도달함.
+- 따라서 외부에서 직접 ClusterIP:Port로 호출하면 응답이 없는 것이 정상 동작임.
+
+  요약: Ingress를 쓸 경우 외부 접근은 반드시 Ingress Controller의 진입점(도메인/NodePort/LoadBalancer)으로만 가능하고, Service의 ClusterIP는 내부 전용이므로 외부 IP:Port 호출은 실패한다.
+
+### 3. **해결 방법**
+- Service 리소스를 Clusterip가 아닌 NodePort로 선언하여 curl http://<노드IP>:<포트> 형식으로 접근 
