@@ -7,6 +7,19 @@
 
 ---
 
+## 0) 워크플로우 시각화
+
+> 소스 → 컨테이너 이미지 빌드 → Docker Hub 푸시 → Kubernetes 배포(Deployment/Service) → Ingress 노출 → gmg.local로 외부 접속까지의 End-to-End 흐름.
+
+<br>
+
+<p align="center">
+  <img src="https://i.postimg.cc/V6sdLtFD/Image-Build-Push-Host-Flow-Diagram.png" alt="Image Build & Push & Host Flow Diagram" width="800">
+</p>
+<br>
+
+---
+
 ## 1) index.html 생성
 
 프로젝트 루트 디렉토리에 간단한 `index.html` 파일을 생성합니다.  
