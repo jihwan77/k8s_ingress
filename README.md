@@ -1,15 +1,15 @@
 # 애플리케이션의 컨테이너화와 Kubernetes 배포
 
 > **목표:**  
-> 애플리케이션을 **컨테이너 이미지**로 만들어 레지스트리에 공유하고,  
-> **Kubernetes Deployment / Service / Ingress**를 통해 클러스터에 배포하여  
+> 애플리케이션을 **컨테이너 이미지**로 빌드하고, Docker Hub에 Push한 뒤  
+> **Kubernetes Deployment / Service / Ingress** 리소스를 이용해 클러스터에 배포하여  
 > 외부에서 접근 가능한 환경을 구축합니다.
 
 ---
+
 ## 1) index.html 생성
 
-- 프로젝트 루트 디렉토리에 `index.html` 파일을 생성 
-- 이후 Dockerfile을 통해 이 HTML 파일을 컨테이너 이미지에 포함시켜 배포하게 될 것
+프로젝트 루트 디렉토리에 간단한 `index.html` 파일을 생성합니다.  
 
 ```html
 <!DOCTYPE html>
@@ -24,9 +24,10 @@
 </html>
 ```
 
-<br>
+이후 Dockerfile을 통해 이 HTML 파일을 컨테이너 이미지에 포함시켜 배포합니다.
 
 ---
+
 ## 2) Dockerfile 작성 → 이미지 빌드
 
 **프로젝트 루트에 `Dockerfile` 생성**
@@ -41,10 +42,10 @@ RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 # 작업 디렉토리 설정
 WORKDIR /app
 
-# 애플리케이션 JAR 파일 복사
+# 애플리케이션 JAR 파일 복사 (예시)
 COPY SpringAppSample2-0.0.1-SNAPSHOT.jar app.jar
 
-# 애플리케이션 실행 (exec 방식 사용)
+# 애플리케이션 실행
 ENTRYPOINT ["java", "-jar", "app.jar"]
 ```
 
@@ -53,12 +54,6 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 ```bash
 docker build -t ${YOUR_DOCKERHUB_ID}/${APP_NAME}:${APP_VERSION} .
 ```
-<br>
-
-<p align="center">
-  <img src="https://i.postimg.cc/Znx1V9Nv/image.png" alt="Docker 이미지 빌드 & 태그 예시" width="800">
-</p>
-<br>
 
 ---
 
@@ -69,16 +64,11 @@ docker login
 docker push ${YOUR_DOCKERHUB_ID}/${APP_NAME}:${APP_VERSION}
 ```
 
-> **Tip:** `latest` 태그도 함께 관리 가능
+> **Tip:** `latest` 태그도 함께 관리 가능  
 ```bash
 docker tag ${YOUR_DOCKERHUB_ID}/${APP_NAME}:${APP_VERSION} ${YOUR_DOCKERHUB_ID}/${APP_NAME}:latest
 docker push ${YOUR_DOCKERHUB_ID}/${APP_NAME}:latest
 ```
-<br>
-<p align="center">
-  <img src="https://i.postimg.cc/Hx9gPPDL/image.png" alt="스크린샷" width="800">
-</p>
-<br>
 
 ---
 
