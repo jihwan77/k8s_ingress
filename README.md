@@ -228,3 +228,21 @@ kubectl get ingress
 <p align="center">
 <img width="720" height="306" alt="image" src="https://github.com/user-attachments/assets/5baf35eb-16b8-40a7-92b2-bf71262a939a" />
 </p>
+
+
+## 🛠️ 트러블 슈팅
+
+### 1. **현상**
+- Ingress 리소스를 배포했으나, 외부 요청이 정상적으로 Service로 전달되지 않음.
+- 브라우저 접속 및 curl 요청 시 404 Not Found 또는 연결 불가 현상 발생.
+  
+### 2. **원인**
+- Ingress 리소스에서 **backend service의 name**과 실제 Service 리소스의 **metadata.name**이 일치하지 않았음
+- Ingress 리소스에서 지정한 **servicePort name/number**와 Service 리소스에서 정의한 **port name/number**가 불일치했음
+    
+    요약: Ingress Controller는 host/path → Service 매핑 시 name과 port 매칭을 엄격하게 검사하므로, 오탈자나 불일치가 있으면 트래픽을 라우팅하지 못함
+    
+### 3. **해결 방법**
+- Ingress의 service.name 값을 Service의 metadata.name과 동일하게 수정
+- Ingress service.port 를 Service 정의와 동일하게 맞춤
+
