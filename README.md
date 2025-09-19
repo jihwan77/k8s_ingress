@@ -67,7 +67,9 @@ docker build -t ${YOUR_DOCKERHUB_ID}/${APP_NAME}:${APP_VERSION} .
 docker login
 docker push ${YOUR_DOCKERHUB_ID}/${APP_NAME}:${APP_VERSION}
 ```
-
+<p align="center">
+  <img src="https://i.postimg.cc/Hx9gPPDL/image.png" alt="스크린샷" width="800">
+</p>
 
 
 ---
