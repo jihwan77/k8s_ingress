@@ -1,9 +1,22 @@
 # 애플리케이션의 컨테이너화와 Kubernetes 배포
 
-> **목표:**  
-> 애플리케이션을 **컨테이너 이미지**로 빌드하고, Docker Hub에 Push한 뒤  
-> **Kubernetes Deployment / Service / Ingress** 리소스를 이용해 클러스터에 배포하여  
-> 외부에서 접근 가능한 환경을 구축합니다.
+## 🎯 프로젝트 목적
+
+- 애플리케이션을 **Docker 이미지**로 빌드하고 Docker Hub에 Push  
+- Kubernetes에 **배포 설정(Deployment / Service / Ingress)**을 적용해 클러스터에 배포  
+- **Ingress와 도메인 매핑을 통해 외부 브라우저에서 접속 가능**한 환경 구축  
+
+---
+
+## 🌠 진행 과정
+
+1. **Spring Boot 프로젝트에 `index.html` 추가**
+2. Dockerfile을 생성하고 **이미지 빌드 → Docker Hub Push**  
+3. Kubernetes에 **배포용 설정 파일 적용**  
+4. **NGINX Ingress Controller 설치**  
+5. Ingress 설정을 적용해 도메인 연결  
+6. Ingress Controller IP와 도메인 매핑  
+7. 브라우저에서 `http://gmg.local` 접속
 
 ---
 
