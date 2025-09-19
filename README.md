@@ -3,7 +3,7 @@
 ## 🎯 프로젝트 목적
 
 - 애플리케이션을 **Docker 이미지**로 빌드하고 Docker Hub에 Push  
-- Kubernetes에 **배포 설정(Deployment / Service / Ingress)**을 적용해 클러스터에 배포  
+- Kubernetes에 **배포 설정(Deployment / Service / Ingress)** 을 적용해 클러스터에 배포  
 - **Ingress와 도메인 매핑을 통해 외부 브라우저에서 접속 가능**한 환경 구축  
 
 ---
