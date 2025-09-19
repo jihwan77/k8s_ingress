@@ -82,152 +82,113 @@ docker push ${YOUR_DOCKERHUB_ID}/${APP_NAME}:latest
 
 ---
 
-## 4) Kubernetes 선언형 매니페스트 작성 (Deployment, Service)
+## 4) Kubernetes 매니페스트 작성 (Deployment, Service)
 
 ### 4-1) `gmg-ingressdeploysvc.yaml`
+
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-deployment
-  namespace: NAMESPACE
+  name: gmg-deployment
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
-      app: web-app
+      app: spring
   template:
     metadata:
       labels:
-        app: web-app
+        app: spring
     spec:
       containers:
-        - name: nginx
-          image: YOUR_DOCKERHUB_ID/APP_NAME:APP_VERSION
-          ports:
-            - containerPort: 80
+      - name: gmg-spring
+        image: minkyoung2/gmg:latest
+        ports:
+        - containerPort: 80
 ```
 
-### 4-2) `k8s/service.yaml`
+### 4-2) `gmg-clusterip.yaml`
+
 ```yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: app-service
-  namespace: NAMESPACE
+  name: gmg-service
 spec:
   type: ClusterIP
   selector:
-    app: web-app
+    app: spring
   ports:
-    - name: http
-      port: 80
+    - port: 80
       targetPort: 80
 ```
 
-적용:
+**리소스 적용**
 
 ```bash
-kubectl apply -f k8s/deployment.yaml
-kubectl apply -f k8s/service.yaml
-kubectl get all -n NAMESPACE
+kubectl apply -f gmg-ingressdeploysvc.yaml
+kubectl apply -f gmg-clusterip.yaml
 ```
 
 ---
 
 ## 5) Ingress Controller 설치
 
-### Minikube 예시
 ```bash
-minikube addons enable ingress
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
+```
+
+설치 완료 후 Ingress Controller Pod와 Service 상태를 확인합니다.
+
+```bash
 kubectl get pods -n ingress-nginx
+kubectl get svc -n ingress-nginx
 ```
-
-### Helm 예시
-```bash
-kubectl create ns ingress-nginx --dry-run=client -o yaml | kubectl apply -f -
-
-helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm repo update
-helm install ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx
-
-kubectl -n ingress-nginx get svc,pods
-```
-
-<br>
 
 ---
+
 ## 6) Ingress 리소스 작성 및 적용
 
-### `k8s/ingress.yaml`
+### `gmg-ingress.yaml`
+
 ```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: app-ingress
-  namespace: NAMESPACE
+  name: gmg-ingress
+  namespace: default  
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  ingressClassName: nginx
   rules:
-    - host: HOST_NAME
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: app-service
-                port:
-                  number: 80
+  - host: gmg.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: gmg-service
+            port:
+              number: 80
 ```
 
-적용:
+**적용**
 
 ```bash
-kubectl apply -f k8s/ingress.yaml
-kubectl get ingress -n NAMESPACE
+kubectl apply -f gmg-ingress.yaml
+kubectl get ingress
 ```
-
-Windows hosts 파일에 매핑:
-```
-<INGRESS_IP>   app.local
-```
-
-<br>
 
 ---
+
 ## 7) 외부 접속 확인
 
-- Windows 브라우저에서 `http://app.local` 접속  
-- index.html의 내용(“드디어 고망고”)이 보이면 성공 ✅
-<br>
+- Windows `hosts` 파일에 Ingress Controller IP와 `gmg.local` 매핑  
+  ```
+  <INGRESS_IP> gmg.local
+  ```
 
----
-## 8) 점검 포인트
-
-```bash
-kubectl get pods -n NAMESPACE -o wide
-kubectl get svc -n NAMESPACE
-kubectl describe ingress app-ingress -n NAMESPACE
-```
-
-- Pod 3개가 모두 Ready 상태인지 확인  
-- Service가 ClusterIP로 정상 연결됐는지 확인  
-- Ingress 라우팅이 올바른지 확인  
-
----
-
-## 파일 구조 예시
-
-```
-.
-├─ index.html
-├─ Dockerfile
-├─ k8s/
-│  ├─ deployment.yaml
-│  ├─ service.yaml
-│  └─ ingress.yaml
-└─ README.md
-```
+- 브라우저에서 `http://gmg.local` 접속  
+- index.html의 내용(“접속 성공”)이 보이면 성공 ✅
