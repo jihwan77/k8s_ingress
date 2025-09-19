@@ -82,7 +82,7 @@ docker build -t ${YOUR_DOCKERHUB_ID}/${APP_NAME}:${APP_VERSION} .
 ```
 
 <p align="center">
-  <img src="https://i.postimg.cc/Znx1V9Nv/image.png" alt="Docker 이미지 빌드 & 태그 예시" width="800">
+  <img src="https://i.postimg.cc/Znx1V9Nv/image.png" alt="Docker 이미지 빌드 & 태그 예시" width="500">
 </p>
 
 ---
@@ -94,7 +94,7 @@ docker login
 docker push ${YOUR_DOCKERHUB_ID}/${APP_NAME}:${APP_VERSION}
 ```
 <p align="center">
-  <img src="https://i.postimg.cc/Hx9gPPDL/image.png" alt="스크린샷" width="800">
+  <img src="https://i.postimg.cc/Hx9gPPDL/image.png" alt="스크린샷" width="500">
 </p>
 
 
@@ -150,7 +150,7 @@ kubectl apply -f gmg-clusterip.yaml
 ```
 
 <p align="center">
-  <img width="700" height="300" alt="image" src="https://github.com/user-attachments/assets/9f27ecae-3dba-429a-9192-7e0c425c890d" />
+  <img width="500" height="250" alt="image" src="https://github.com/user-attachments/assets/9f27ecae-3dba-429a-9192-7e0c425c890d" />
 </p>
 
 ---
