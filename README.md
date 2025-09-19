@@ -56,6 +56,16 @@
 
 ---
 
+## 시스템 아키텍처
+<br>
+
+<p align="center">
+<img width="720" height="532" alt="image" src="https://github.com/user-attachments/assets/47f51cf5-a5ea-4341-83f0-13154d24a411" />
+</p>
+<br>
+
+---
+
 ## 🚀 워크플로우 시각화
 <br>
 
@@ -66,15 +76,6 @@
 
 ---
 
-## 시스템 아키텍처
-<br>
-
-<p align="center">
-<img width="720" height="532" alt="image" src="https://github.com/user-attachments/assets/47f51cf5-a5ea-4341-83f0-13154d24a411" />
-</p>
-<br>
-
----
 ## 1) index.html 생성
 
 프로젝트 루트 디렉토리에 간단한 `index.html` 파일을 생성합니다.  
