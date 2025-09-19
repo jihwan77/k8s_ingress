@@ -55,6 +55,10 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 docker build -t ${YOUR_DOCKERHUB_ID}/${APP_NAME}:${APP_VERSION} .
 ```
 
+<p align="center">
+  <img src="https://i.postimg.cc/Znx1V9Nv/image.png" alt="Docker 이미지 빌드 & 태그 예시" width="800">
+</p>
+
 ---
 
 ## 3) Docker Hub에 이미지 Push
@@ -64,11 +68,7 @@ docker login
 docker push ${YOUR_DOCKERHUB_ID}/${APP_NAME}:${APP_VERSION}
 ```
 
-> **Tip:** `latest` 태그도 함께 관리 가능  
-```bash
-docker tag ${YOUR_DOCKERHUB_ID}/${APP_NAME}:${APP_VERSION} ${YOUR_DOCKERHUB_ID}/${APP_NAME}:latest
-docker push ${YOUR_DOCKERHUB_ID}/${APP_NAME}:latest
-```
+
 
 ---
 
