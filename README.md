@@ -204,7 +204,7 @@ kubectl describe ingress gmg-ingress
 kubectl get ingress
 ```
 <p align="center">
-<img width="720" height="325" alt="image" src="https://github.com/user-attachments/assets/f5daf8af-3300-42d7-8aae-2981f8a69a97" />
+<img width="700" height="325" alt="image" src="https://github.com/user-attachments/assets/f5daf8af-3300-42d7-8aae-2981f8a69a97" />
 </p>
 
 <p align="center">
@@ -219,14 +219,14 @@ kubectl get ingress
   <INGRESS_IP> gmg.local
   ```
 <p align="center">
-<img width="600" height="200" alt="image" src="https://github.com/user-attachments/assets/e82f980b-570e-4105-9ac3-7bdfa24d36c5" />
+<img width="700" height="200" alt="image" src="https://github.com/user-attachments/assets/e82f980b-570e-4105-9ac3-7bdfa24d36c5" />
 </p>
 
 - 브라우저에서 `http://gmg.local` 접속  
 - index.html의 내용(“접속 성공”)이 보이면 성공 ✅
 
 <p align="center">
-<img width="720" height="306" alt="image" src="https://github.com/user-attachments/assets/5baf35eb-16b8-40a7-92b2-bf71262a939a" />
+<img width="700" height="300" alt="image" src="https://github.com/user-attachments/assets/5baf35eb-16b8-40a7-92b2-bf71262a939a" />
 </p>
 
 
