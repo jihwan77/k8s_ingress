@@ -123,6 +123,10 @@ kubectl apply -f gmg-ingressdeploysvc.yaml
 kubectl apply -f gmg-clusterip.yaml
 ```
 
+<p align="center">
+  <img width="700" height="300" alt="image" src="https://github.com/user-attachments/assets/9f27ecae-3dba-429a-9192-7e0c425c890d" />
+</p>
+
 ---
 
 ## 5) Ingress Controller 설치
@@ -170,8 +174,15 @@ spec:
 
 ```bash
 kubectl apply -f gmg-ingress.yaml
+kubectl describe ingress gmg-ingress
 kubectl get ingress
 ```
+<p align="center">
+<img width="720" height="325" alt="image" src="https://github.com/user-attachments/assets/f5daf8af-3300-42d7-8aae-2981f8a69a97" />
+</p>
+
+<p align="center">
+<img width="700" height="200" alt="image" src="https://github.com/user-attachments/assets/c31cd05a-645f-42b1-80f0-71ab7378e879" />
 
 ---
 
@@ -181,6 +192,13 @@ kubectl get ingress
   ```
   <INGRESS_IP> gmg.local
   ```
+<p align="center">
+<img width="600" height="200" alt="image" src="https://github.com/user-attachments/assets/e82f980b-570e-4105-9ac3-7bdfa24d36c5" />
+</p>
 
 - 브라우저에서 `http://gmg.local` 접속  
 - index.html의 내용(“접속 성공”)이 보이면 성공 ✅
+
+<p align="center">
+<img width="720" height="306" alt="image" src="https://github.com/user-attachments/assets/5baf35eb-16b8-40a7-92b2-bf71262a939a" />
+</p>
