@@ -53,6 +53,11 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 ```bash
 docker build -t ${YOUR_DOCKERHUB_ID}/${APP_NAME}:${APP_VERSION} .
 ```
+<br>
+
+<p align="center">
+  <img src="https://i.postimg.cc/Znx1V9Nv/image.png" alt="Docker 이미지 빌드 & 태그 예시" width="800">
+</p>
 
 ---
 
