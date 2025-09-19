@@ -27,7 +27,7 @@
 <br>
 
 <p align="center">
-  <img src="https://i.postimg.cc/V6sdLtFD/Image-Build-Push-Host-Flow-Diagram.png" alt="Image Build & Push & Host Flow Diagram" width="800">
+  <img src="https://i.postimg.cc/sgpP0tDS/3-drawio-1.png" alt="Image Build & Push & Host Flow Diagram" width="800">
 </p>
 <br>
 
