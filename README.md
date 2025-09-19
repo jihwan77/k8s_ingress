@@ -6,7 +6,6 @@
 > 외부에서 접근 가능한 환경을 구축합니다.
 
 ---
-
 ## 1) index.html 생성
 
 - 프로젝트 루트 디렉토리에 `index.html` 파일을 생성 
@@ -25,8 +24,9 @@
 </html>
 ```
 
----
+<br>
 
+---
 ## 2) Dockerfile 작성 → 이미지 빌드
 
 **프로젝트 루트에 `Dockerfile` 생성**
@@ -58,6 +58,7 @@ docker build -t ${YOUR_DOCKERHUB_ID}/${APP_NAME}:${APP_VERSION} .
 <p align="center">
   <img src="https://i.postimg.cc/Znx1V9Nv/image.png" alt="Docker 이미지 빌드 & 태그 예시" width="800">
 </p>
+<br>
 
 ---
 
@@ -73,6 +74,11 @@ docker push ${YOUR_DOCKERHUB_ID}/${APP_NAME}:${APP_VERSION}
 docker tag ${YOUR_DOCKERHUB_ID}/${APP_NAME}:${APP_VERSION} ${YOUR_DOCKERHUB_ID}/${APP_NAME}:latest
 docker push ${YOUR_DOCKERHUB_ID}/${APP_NAME}:latest
 ```
+<br>
+<p align="center">
+  <img src="https://i.postimg.cc/Hx9gPPDL/image.png" alt="스크린샷" width="800">
+</p>
+<br>
 
 ---
 
@@ -148,8 +154,9 @@ helm install ingress-nginx ingress-nginx/ingress-nginx -n ingress-nginx
 kubectl -n ingress-nginx get svc,pods
 ```
 
----
+<br>
 
+---
 ## 6) Ingress 리소스 작성 및 적용
 
 ### `k8s/ingress.yaml`
@@ -188,15 +195,16 @@ Windows hosts 파일에 매핑:
 <INGRESS_IP>   app.local
 ```
 
----
+<br>
 
+---
 ## 7) 외부 접속 확인
 
 - Windows 브라우저에서 `http://app.local` 접속  
 - index.html의 내용(“드디어 고망고”)이 보이면 성공 ✅
+<br>
 
 ---
-
 ## 8) 점검 포인트
 
 ```bash
