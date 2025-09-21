@@ -257,6 +257,7 @@ spec:
 |------|------|
 | **실행 결과** | <p align="center"><img width="700" height="325" alt="image" src="https://github.com/user-attachments/assets/5baf35eb-16b8-40a7-92b2-bf71262a939a" /></p> |
 
+<br>
 
 ## 🛠️ 트러블 슈팅
 
